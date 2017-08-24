@@ -17,7 +17,7 @@ class ViewController: UIViewController {
     var collectionView:UICollectionView!
     let imageURLs = [
         URL(string:"\(imageUrlString)image001.jpg")!,
-        URL(string:"\(imageUrlString)image002.jpg")!,
+        URL(string:"\(imageUrlString)private.jpg")!,
         URL(string:"\(imageUrlString)image003.jpg")!,
         URL(string:"\(imageUrlString)image004.jpg")!,
         URL(string:"\(imageUrlString)image005.jpg")!,
@@ -114,9 +114,9 @@ extension ViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         // Using transition
-        //let photoSlider = PhotoSlider.ViewController(imageURLs: imageURLs)
+        let photoSlider = PhotoSlider.ViewController(imageURLs: imageURLs)
         //let photoSlider = PhotoSlider.ViewController(images: images)
-        let photoSlider = PhotoSlider.ViewController(photos: photos)
+        //let photoSlider = PhotoSlider.ViewController(photos: photos)
         photoSlider.delegate = self
         photoSlider.currentPage = indexPath.row
         //photoSlider.visibleCloseButton = false

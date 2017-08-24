@@ -7,34 +7,45 @@
 
 import UIKit
 import Kingfisher
+import SimpleButton
+
 
 protocol PhotoSliderImageViewDelegate {
     func photoSliderImageViewDidEndZooming(_ viewController: PhotoSlider.ImageView, atScale scale: CGFloat)
 }
 
 class ImageView: UIView {
-
+    
     var imageView: UIImageView!
     var scrollView: UIScrollView!
     var progressView: PhotoSlider.ProgressView!
     var delegate: PhotoSliderImageViewDelegate? = nil
     weak var imageLoader: PhotoSlider.ImageLoader?
+    var isPrivatePhoto: Bool = false
+    //var requestPrivatePhotosButton: BFPaperButton!
     
+    
+    //CUSTOM: removed initialize() from here, calling manually outside
     override init(frame: CGRect) {
         super.init(frame: frame)
-        initialize()
     }
-
+    
+    //CUSTOM: added
+    convenience init(frame: CGRect, isPrivatePhoto: Bool) {
+        self.init(frame: frame)
+        self.isPrivatePhoto = isPrivatePhoto
+    }
+    
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
         initialize()
     }
     
     func initialize() {
-
+        
         backgroundColor = UIColor.clear
         isUserInteractionEnabled = true
-
+        
         // for zoom
         scrollView = UIScrollView(frame: self.bounds)
         scrollView.showsHorizontalScrollIndicator = false
@@ -48,21 +59,18 @@ class ImageView: UIView {
         imageView = UIImageView(frame: CGRect.zero)
         imageView.contentMode = .scaleAspectFit
         imageView.isUserInteractionEnabled = true
-
+        
         addSubview(scrollView)
         layoutScrollView()
-
+        
         scrollView.addSubview(imageView)
-       
+        
         // progress view
         progressView = ProgressView(frame: CGRect.zero)
         progressView.isHidden = true
         addSubview(progressView)
         layoutProgressView()
         
-        let doubleTabGesture = UITapGestureRecognizer(target: self, action: #selector(didDoubleTap(_:)))
-        doubleTabGesture.numberOfTapsRequired = 2
-        addGestureRecognizer(doubleTabGesture)
         
         imageView.autoresizingMask = [
             .flexibleWidth,
@@ -73,11 +81,33 @@ class ImageView: UIView {
             .flexibleBottomMargin
         ]
         
+        //CUSTOM:
+        if self.isPrivatePhoto
+        {
+            let privateRequestView = UIView(frame: self.scrollView.frame)
+            privateRequestView.backgroundColor = UIColor(red: 41.0 / 255.0, green: 44.0 / 255.0, blue: 49.0 / 255.0, alpha: 1.0)
+
+            let requestButton = SimpleButton(type: .custom)
+            requestButton.frame = CGRect(x: 16, y: (scrollView.frame.size.height / 2) + 20, width: scrollView.frame.size.width - 32, height: 50.0)
+            requestButton.setTitle(NSLocalizedString("Request private photos", comment: "Request private photos").uppercased(), for: .normal)
+            requestButton.setTitleColor(UIColor.white, for: .normal)
+            requestButton.setBackgroundColor(UIColor(red: 72.0 / 255.0, green: 96.0 / 255.0, blue: 1.0, alpha: 1.0), for: .normal)
+            requestButton.addTarget(self, action: #selector(requestButtonTapped), for: .touchUpInside)
+            
+            scrollView.addSubview(privateRequestView)
+            privateRequestView.addSubview(requestButton)
+        }
+        else
+        {
+            let doubleTabGesture = UITapGestureRecognizer(target: self, action: #selector(didDoubleTap(_:)))
+            doubleTabGesture.numberOfTapsRequired = 2
+            addGestureRecognizer(doubleTabGesture)
+        }
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
-
+        
         let boundsSize = self.bounds.size
         var frameToCenter = self.imageView.frame
         
@@ -101,6 +131,12 @@ class ImageView: UIView {
         }
     }
     
+    func requestButtonTapped()
+    {
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "uk.co.wapoapp.requestprivates"), object: self, userInfo: nil)
+    }
+    
+    
     // MARK: - Constraints
     
     private func layoutScrollView() {
@@ -122,7 +158,7 @@ class ImageView: UIView {
             progressView.centerXAnchor.constraint(lessThanOrEqualTo: centerXAnchor, constant: 1.0),
             progressView.centerYAnchor.constraint(lessThanOrEqualTo: centerYAnchor, constant: 1.0),
             ].forEach { $0.isActive = true }
-     }
+    }
     
     func loadImage(imageURL: URL) {
         progressView.isHidden = false
@@ -162,12 +198,12 @@ class ImageView: UIView {
             }
             
         } else {
-
+            
             frame.size = CGSize(width: width, height: bounds.height)
             if width >= bounds.width {
                 frame.size = CGSize(width: bounds.width, height: height)
             }
-
+            
         }
         
         imageView.frame = frame
@@ -181,13 +217,12 @@ class ImageView: UIView {
         }
         layoutImageView(image: image)
     }
-    
 }
 
 // MARK: - Actions
 
 extension ImageView {
-
+    
     func didDoubleTap(_ sender: UIGestureRecognizer) {
         if scrollView.zoomScale == 1.0 {
             let touchPoint = sender.location(in: self)
@@ -202,7 +237,7 @@ extension ImageView {
 // MARK: - UIScrollViewDelegate
 
 extension ImageView: UIScrollViewDelegate {
-
+    
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         return imageView
     }
