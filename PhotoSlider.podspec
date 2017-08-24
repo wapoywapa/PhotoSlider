@@ -26,4 +26,5 @@ Pod::Spec.new do |s|
   }
 
   s.dependency 'Kingfisher'
+  s.dependency 'SimpleButton'
 end
