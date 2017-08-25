@@ -11,6 +11,9 @@
 		94530E141E247CA300D12C16 /* KingfisherImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94530E131E247CA300D12C16 /* KingfisherImageLoader.swift */; };
 		B074BFB11F4F6D2D0031EB2E /* SimpleButton.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B074BFB01F4F6D2D0031EB2E /* SimpleButton.framework */; };
 		B074BFB41F4F6E0E0031EB2E /* SimpleButton.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = B074BFB31F4F6E0E0031EB2E /* SimpleButton.framework */; };
+		B074BFC31F50825E0031EB2E /* icLockRequest.png in Resources */ = {isa = PBXBuildFile; fileRef = B074BFC01F50825E0031EB2E /* icLockRequest.png */; };
+		B074BFC41F50825E0031EB2E /* icLockRequest@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B074BFC11F50825E0031EB2E /* icLockRequest@2x.png */; };
+		B074BFC51F50825E0031EB2E /* icLockRequest@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B074BFC21F50825E0031EB2E /* icLockRequest@3x.png */; };
 		DC0E42021C3182080090AC94 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0E41C71C317E850090AC94 /* ImageView.swift */; };
 		DC0E42031C3182090090AC94 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0E41C81C317E850090AC94 /* Photo.swift */; };
 		DC0E42041C31820C0090AC94 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0E41C91C317E850090AC94 /* ProgressView.swift */; };
@@ -129,6 +132,9 @@
 		94530E131E247CA300D12C16 /* KingfisherImageLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KingfisherImageLoader.swift; sourceTree = "<group>"; };
 		B074BFB01F4F6D2D0031EB2E /* SimpleButton.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SimpleButton.framework; path = Carthage/Build/iOS/SimpleButton.framework; sourceTree = "<group>"; };
 		B074BFB31F4F6E0E0031EB2E /* SimpleButton.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SimpleButton.framework; path = Carthage/Build/iOS/SimpleButton.framework; sourceTree = "<group>"; };
+		B074BFC01F50825E0031EB2E /* icLockRequest.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icLockRequest.png; sourceTree = "<group>"; };
+		B074BFC11F50825E0031EB2E /* icLockRequest@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icLockRequest@2x.png"; sourceTree = "<group>"; };
+		B074BFC21F50825E0031EB2E /* icLockRequest@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icLockRequest@3x.png"; sourceTree = "<group>"; };
 		DC0E41BD1C317E850090AC94 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = PhotoSlider/Info.plist; sourceTree = "<group>"; };
 		DC0E41BE1C317E850090AC94 /* PhotoSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PhotoSlider.h; path = PhotoSlider/PhotoSlider.h; sourceTree = "<group>"; };
 		DC0E41C21C317E850090AC94 /* PhotoSliderClose.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PhotoSliderClose.png; sourceTree = "<group>"; };
@@ -199,6 +205,9 @@
 		DC0E41C01C317E850090AC94 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				B074BFC01F50825E0031EB2E /* icLockRequest.png */,
+				B074BFC11F50825E0031EB2E /* icLockRequest@2x.png */,
+				B074BFC21F50825E0031EB2E /* icLockRequest@3x.png */,
 				DC0E41C21C317E850090AC94 /* PhotoSliderClose.png */,
 				DC0E41C31C317E850090AC94 /* PhotoSliderClose@2x.png */,
 				DC0E41C41C317E850090AC94 /* PhotoSliderClose@3x.png */,
@@ -413,8 +422,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B074BFC41F50825E0031EB2E /* icLockRequest@2x.png in Resources */,
 				DC0E42071C3182180090AC94 /* PhotoSliderClose.png in Resources */,
 				DC0E42081C31821B0090AC94 /* PhotoSliderClose@2x.png in Resources */,
+				B074BFC31F50825E0031EB2E /* icLockRequest.png in Resources */,
+				B074BFC51F50825E0031EB2E /* icLockRequest@3x.png in Resources */,
 				DC0E42091C31821D0090AC94 /* PhotoSliderClose@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

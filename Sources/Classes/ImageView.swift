@@ -86,9 +86,15 @@ class ImageView: UIView {
         {
             let privateRequestView = UIView(frame: self.scrollView.frame)
             privateRequestView.backgroundColor = UIColor(red: 41.0 / 255.0, green: 44.0 / 255.0, blue: 49.0 / 255.0, alpha: 1.0)
-
+            
+            let padlockImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 65))
+            let padlockImagePath = self.resourceBundle().path(forResource: "icLockRequest", ofType: "png")
+            padlockImageView.center = scrollView.center
+            padlockImageView.frame = CGRect(x: padlockImageView.frame.origin.x, y: padlockImageView.frame.origin.y - padlockImageView.frame.size.height, width: padlockImageView.frame.size.width, height: padlockImageView.frame.size.height)
+            padlockImageView.image = UIImage(contentsOfFile: padlockImagePath!)
+            
             self.requestButton = SimpleButton(type: .custom)
-            self.requestButton!.frame = CGRect(x: 16, y: (scrollView.frame.size.height / 2) + 20, width: scrollView.frame.size.width - 32, height: 50.0)
+            self.requestButton!.frame = CGRect(x: 16, y: padlockImageView.frame.origin.y + padlockImageView.frame.size.height + 39, width: scrollView.frame.size.width - 32, height: 50.0)
             self.requestButton!.setTitle(NSLocalizedString("Request private photos", comment: "Request private photos").uppercased(), for: .normal)
             self.requestButton!.setTitleColor(UIColor.white, for: .normal)
             self.requestButton!.setBackgroundColor(UIColor(red: 72.0 / 255.0, green: 96.0 / 255.0, blue: 1.0, alpha: 1.0), for: .normal)
@@ -96,6 +102,7 @@ class ImageView: UIView {
             
             scrollView.addSubview(privateRequestView)
             privateRequestView.addSubview(self.requestButton!)
+            privateRequestView.addSubview(padlockImageView)
         }
         else
         {
@@ -103,6 +110,22 @@ class ImageView: UIView {
             doubleTabGesture.numberOfTapsRequired = 2
             addGestureRecognizer(doubleTabGesture)
         }
+    }
+    
+    fileprivate func resourceBundle() -> Bundle {
+        
+        let bundlePath = Bundle.main.path(
+            forResource: "PhotoSlider",
+            ofType: "bundle",
+            inDirectory: "Frameworks/PhotoSlider.framework"
+        )
+        
+        if bundlePath != nil {
+            return Bundle(path: bundlePath!)!
+        }
+        
+        return Bundle(for: type(of: self))
+        
     }
     
     override func layoutSubviews() {
