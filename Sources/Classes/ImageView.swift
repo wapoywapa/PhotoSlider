@@ -22,7 +22,7 @@ class ImageView: UIView {
     var delegate: PhotoSliderImageViewDelegate? = nil
     weak var imageLoader: PhotoSlider.ImageLoader?
     var isPrivatePhoto: Bool = false
-    //var requestPrivatePhotosButton: BFPaperButton!
+    var requestButton: SimpleButton? = nil
     
     
     //CUSTOM: removed initialize() from here, calling manually outside
@@ -87,15 +87,15 @@ class ImageView: UIView {
             let privateRequestView = UIView(frame: self.scrollView.frame)
             privateRequestView.backgroundColor = UIColor(red: 41.0 / 255.0, green: 44.0 / 255.0, blue: 49.0 / 255.0, alpha: 1.0)
 
-            let requestButton = SimpleButton(type: .custom)
-            requestButton.frame = CGRect(x: 16, y: (scrollView.frame.size.height / 2) + 20, width: scrollView.frame.size.width - 32, height: 50.0)
-            requestButton.setTitle(NSLocalizedString("Request private photos", comment: "Request private photos").uppercased(), for: .normal)
-            requestButton.setTitleColor(UIColor.white, for: .normal)
-            requestButton.setBackgroundColor(UIColor(red: 72.0 / 255.0, green: 96.0 / 255.0, blue: 1.0, alpha: 1.0), for: .normal)
-            requestButton.addTarget(self, action: #selector(requestButtonTapped), for: .touchUpInside)
+            self.requestButton = SimpleButton(type: .custom)
+            self.requestButton!.frame = CGRect(x: 16, y: (scrollView.frame.size.height / 2) + 20, width: scrollView.frame.size.width - 32, height: 50.0)
+            self.requestButton!.setTitle(NSLocalizedString("Request private photos", comment: "Request private photos").uppercased(), for: .normal)
+            self.requestButton!.setTitleColor(UIColor.white, for: .normal)
+            self.requestButton!.setBackgroundColor(UIColor(red: 72.0 / 255.0, green: 96.0 / 255.0, blue: 1.0, alpha: 1.0), for: .normal)
+            self.requestButton!.addTarget(self, action: #selector(requestButtonTapped), for: .touchUpInside)
             
             scrollView.addSubview(privateRequestView)
-            privateRequestView.addSubview(requestButton)
+            privateRequestView.addSubview(self.requestButton!)
         }
         else
         {
@@ -134,6 +134,20 @@ class ImageView: UIView {
     func requestButtonTapped()
     {
         NotificationCenter.default.post(name: Notification.Name(rawValue: "uk.co.wapoapp.requestprivates"), object: self, userInfo: nil)
+        self.requestButton!.isLoading = true
+        
+        DispatchQueue.global().async {
+            
+            sleep(1)
+            
+            DispatchQueue.main.async {
+         
+                self.requestButton!.isLoading = false
+                self.requestButton!.setTitle(NSLocalizedString("Sent!", comment: "Sent!"), for: .normal)
+                self.requestButton!.setBackgroundColor(UIColor(red: 139.0 / 255.0, green: 141.0 / 255.0, blue: 145.0 / 255.0, alpha: 1.0))
+                self.requestButton!.isEnabled = false
+            }
+        }
     }
     
     
