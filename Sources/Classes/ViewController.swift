@@ -35,6 +35,9 @@ public class ViewController: UIViewController {
         scrollView.alwaysBounceVertical = true
         scrollView.isScrollEnabled = true
         scrollView.accessibilityLabel = "PhotoSliderScrollView"
+        if #available(iOS 11.0, *) {
+            scrollView.contentInsetAdjustmentBehavior = .never
+        }
         
         scrollView.contentSize = CGSize(
             width: self.view.bounds.width * CGFloat(self.imageResources()!.count),
