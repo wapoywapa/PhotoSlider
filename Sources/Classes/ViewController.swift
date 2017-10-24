@@ -292,7 +292,7 @@ fileprivate extension ViewController {
     func layoutCloseButton() {
         closeButton.translatesAutoresizingMaskIntoConstraints = false
         [
-            closeButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 0.0),
+            closeButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 15.0),
             closeButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0.0),
             closeButton.heightAnchor.constraint(equalToConstant: 52.0),
             closeButton.widthAnchor.constraint(equalToConstant: 52.0),
