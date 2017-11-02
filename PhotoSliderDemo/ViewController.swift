@@ -114,7 +114,12 @@ extension ViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         // Using transition
-        let photoSlider = PhotoSlider.ViewController(imageURLs: imageURLs)
+        //let photoSlider = PhotoSlider.ViewController(imageURLs: imageURLs)
+        
+        let fakeAdBannerView = UIView.init(frame: CGRect(x: 0, y:0, width: 320, height: 50))
+        fakeAdBannerView.backgroundColor = .red        
+        let photoSlider = PhotoSlider.ViewController(imageURLs: imageURLs, bannerAdView: fakeAdBannerView)
+        
         //let photoSlider = PhotoSlider.ViewController(images: images)
         //let photoSlider = PhotoSlider.ViewController(photos: photos)
         photoSlider.delegate = self

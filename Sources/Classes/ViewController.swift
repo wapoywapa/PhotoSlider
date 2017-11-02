@@ -51,6 +51,8 @@ public class ViewController: UIViewController {
     var images: [UIImage]?
     var photos: [PhotoSlider.Photo]?
     var usingImageType: PhotoSliderControllerUsingImageType = .None
+    var bannerAdView: UIView?
+    
     
     lazy var backgroundView: UIView = {
         let backgroundView = UIView(frame: self.view.bounds)
@@ -110,6 +112,15 @@ public class ViewController: UIViewController {
     public var captionTextColor = UIColor.white
     
     public var imageLoader: PhotoSlider.ImageLoader?
+
+    
+    public init(imageURLs:Array<URL>, bannerAdView: UIView) {
+        super.init(nibName: nil, bundle: nil)
+        self.imageURLs = imageURLs
+        usingImageType = .URL
+        
+        self.bannerAdView = bannerAdView
+    }
     
     public init(imageURLs:Array<URL>) {
         super.init(nibName: nil, bundle: nil)
@@ -251,6 +262,14 @@ public class ViewController: UIViewController {
         layoutCaptionLabel()
         updateCaption()
         
+        
+        // Banner Ad View
+        if bannerAdView != nil {
+            
+            view.addSubview(bannerAdView!)
+            layoutBannerAdView()
+        }
+        
         setNeedsStatusBarAppearanceUpdate()
         
     }
@@ -297,6 +316,21 @@ fileprivate extension ViewController {
             closeButton.heightAnchor.constraint(equalToConstant: 52.0),
             closeButton.widthAnchor.constraint(equalToConstant: 52.0),
             ].forEach { $0.isActive = true }
+    }
+    
+    func layoutBannerAdView() {
+        
+        if let bannerAdView = self.bannerAdView
+        {
+            bannerAdView.translatesAutoresizingMaskIntoConstraints = false
+            [
+                bannerAdView.bottomAnchor.constraint(equalTo: pageControl.topAnchor, constant: 0.0),
+                bannerAdView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0.0),
+                bannerAdView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0.0),
+                bannerAdView.heightAnchor.constraint(equalToConstant: bannerAdView.frame.size.height),
+                bannerAdView.widthAnchor.constraint(equalToConstant: bannerAdView.frame.size.width),
+                ].forEach { $0.isActive = true }
+        }
     }
     
     func layoutPageControl() {
