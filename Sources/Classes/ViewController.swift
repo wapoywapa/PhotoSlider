@@ -106,7 +106,12 @@ public class ViewController: UIViewController {
         pageControl.frame = .zero
         pageControl.numberOfPages = self.imageResources()!.count
         pageControl.isUserInteractionEnabled = false
-        pageControl.backgroundColor = .black
+        
+        if self.bannerAdView != nil
+        {
+            pageControl.backgroundColor = .black
+        }
+        
         return pageControl
     }()
     
