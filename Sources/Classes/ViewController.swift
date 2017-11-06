@@ -52,6 +52,7 @@ public class ViewController: UIViewController {
     var photos: [PhotoSlider.Photo]?
     var usingImageType: PhotoSliderControllerUsingImageType = .None
     var bannerAdView: UIView?
+    var viewUpperPadding: UIView?
     
     
     lazy var backgroundView: UIView = {
@@ -105,6 +106,7 @@ public class ViewController: UIViewController {
         pageControl.frame = .zero
         pageControl.numberOfPages = self.imageResources()!.count
         pageControl.isUserInteractionEnabled = false
+        pageControl.backgroundColor = .black
         return pageControl
     }()
     
@@ -266,6 +268,10 @@ public class ViewController: UIViewController {
         // Banner Ad View
         if bannerAdView != nil {
             
+            viewUpperPadding = UIView.init(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 3))
+            viewUpperPadding!.backgroundColor = .black
+            
+            view.addSubview(viewUpperPadding!)
             view.addSubview(bannerAdView!)
             layoutBannerAdView()
         }
@@ -330,6 +336,18 @@ fileprivate extension ViewController {
                 bannerAdView.heightAnchor.constraint(equalToConstant: bannerAdView.frame.size.height),
                 bannerAdView.widthAnchor.constraint(equalToConstant: bannerAdView.frame.size.width),
                 ].forEach { $0.isActive = true }
+            
+            if let viewUpperPadding = self.viewUpperPadding
+            {
+                viewUpperPadding.translatesAutoresizingMaskIntoConstraints = false
+                [
+                    viewUpperPadding.bottomAnchor.constraint(equalTo: bannerAdView.topAnchor, constant: 0.0),
+                    viewUpperPadding.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0.0),
+                    viewUpperPadding.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0.0),
+                    viewUpperPadding.heightAnchor.constraint(equalToConstant: viewUpperPadding.frame.size.height),
+                    viewUpperPadding.widthAnchor.constraint(equalToConstant: viewUpperPadding.frame.size.width),
+                    ].forEach { $0.isActive = true }
+            }
         }
     }
     
