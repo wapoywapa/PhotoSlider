@@ -93,8 +93,15 @@ class ImageView: UIView {
             padlockImageView.frame = CGRect(x: padlockImageView.frame.origin.x, y: padlockImageView.frame.origin.y - padlockImageView.frame.size.height, width: padlockImageView.frame.size.width, height: padlockImageView.frame.size.height)
             padlockImageView.image = UIImage(contentsOfFile: padlockImagePath!)
             
+            var iPadExtraInsetSides: CGFloat = 0.0
+            
+            if UIDevice.current.userInterfaceIdiom == .pad
+            {
+                iPadExtraInsetSides = 225.0
+            }
+            
             self.requestButton = SimpleButton(type: .custom)
-            self.requestButton!.frame = CGRect(x: 16, y: padlockImageView.frame.origin.y + padlockImageView.frame.size.height + 39, width: scrollView.frame.size.width - 32, height: 50.0)
+            self.requestButton!.frame = CGRect(x: 16 + iPadExtraInsetSides, y: padlockImageView.frame.origin.y + padlockImageView.frame.size.height + 39, width: scrollView.frame.size.width - 32 - (2*iPadExtraInsetSides), height: 50.0)
             self.requestButton!.setTitle(NSLocalizedString("Request private photos", comment: "A button, when pressed will send a request to view the other users private photos").uppercased(), for: .normal)
             self.requestButton!.setTitleColor(UIColor.white, for: .normal)
             self.requestButton!.setBackgroundColor(UIColor(red: 72.0 / 255.0, green: 96.0 / 255.0, blue: 1.0, alpha: 1.0), for: .normal)

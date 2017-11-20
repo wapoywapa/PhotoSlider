@@ -7,8 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B074BFA01F4F6B210031EB2E /* PhotoSlider.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B074BF9F1F4F6B210031EB2E /* PhotoSlider.framework */; };
-		B074BFA11F4F6B210031EB2E /* PhotoSlider.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B074BF9F1F4F6B210031EB2E /* PhotoSlider.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B03DFEFB1FC35C3400D75224 /* SimpleButton.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B03DFEFA1FC35C3400D75224 /* SimpleButton.framework */; };
 		DC0E41DA1C3180290090AC94 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = DC0E41D71C3180290090AC94 /* LICENSE */; };
 		DC0E41DB1C3180290090AC94 /* PhotoSlider.podspec in Resources */ = {isa = PBXBuildFile; fileRef = DC0E41D81C3180290090AC94 /* PhotoSlider.podspec */; };
 		DC20F45D1ADA871D009A4C64 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC20F45C1ADA871D009A4C64 /* AppDelegate.swift */; };
@@ -47,7 +46,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				B074BFA11F4F6B210031EB2E /* PhotoSlider.framework in Embed Frameworks */,
 				DC5846E21D405374003A5D23 /* Kingfisher.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -56,7 +54,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		B074BF9F1F4F6B210031EB2E /* PhotoSlider.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PhotoSlider.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B03DFEFA1FC35C3400D75224 /* SimpleButton.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SimpleButton.framework; path = Carthage/Build/iOS/SimpleButton.framework; sourceTree = "<group>"; };
 		DC0E41D71C3180290090AC94 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		DC0E41D81C3180290090AC94 /* PhotoSlider.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PhotoSlider.podspec; sourceTree = "<group>"; };
 		DC20F4571ADA871D009A4C64 /* PhotoSliderDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoSliderDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -87,7 +85,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B074BFA01F4F6B210031EB2E /* PhotoSlider.framework in Frameworks */,
+				B03DFEFB1FC35C3400D75224 /* SimpleButton.framework in Frameworks */,
 				DC5846E11D405374003A5D23 /* Kingfisher.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -105,7 +103,7 @@
 		66A3BAA23076667DA79DC70A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B074BF9F1F4F6B210031EB2E /* PhotoSlider.framework */,
+				B03DFEFA1FC35C3400D75224 /* SimpleButton.framework */,
 				DC5846E01D405374003A5D23 /* Kingfisher.framework */,
 			);
 			name = Frameworks;
@@ -449,6 +447,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "PhotoSliderDemo/PhotoSliderDemo-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -469,6 +468,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "PhotoSliderDemo/PhotoSliderDemo-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
