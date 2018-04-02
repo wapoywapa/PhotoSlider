@@ -237,6 +237,7 @@
 				TargetAttributes = {
 					DC20F4561ADA871D009A4C64 = {
 						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = 52PY5MWH7M;
 					};
 					DC917AC31BB29B7300031F84 = {
 						CreatedOnToolsVersion = 7.0;
@@ -434,6 +435,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = 52PY5MWH7M;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/Carthage/Build",
@@ -456,6 +458,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = 52PY5MWH7M;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/Carthage/Build",

@@ -23,6 +23,7 @@ class ImageView: UIView {
     weak var imageLoader: PhotoSlider.ImageLoader?
     var isPrivatePhoto: Bool = false
     var requestButton: SimpleButton? = nil
+    var identifier: Int = -1
     
     
     //CUSTOM: removed initialize() from here, calling manually outside
@@ -31,9 +32,10 @@ class ImageView: UIView {
     }
     
     //CUSTOM: added
-    convenience init(frame: CGRect, isPrivatePhoto: Bool) {
+    convenience init(frame: CGRect, isPrivatePhoto: Bool, identifier: Int) {
         self.init(frame: frame)
         self.isPrivatePhoto = isPrivatePhoto
+        self.identifier = identifier
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -163,7 +165,10 @@ class ImageView: UIView {
     
     func requestButtonTapped()
     {
-        NotificationCenter.default.post(name: Notification.Name(rawValue: "uk.co.wapoapp.requestprivates"), object: self, userInfo: nil)
+        //we pass back an identifier, helps us track the notification sender/receiver
+        let userInfo: [String: Int] = ["identifier": self.identifier]
+        
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "uk.co.wapoapp.requestprivates"), object: self, userInfo: userInfo)
         self.requestButton!.isLoading = true
         
         DispatchQueue.global().async {

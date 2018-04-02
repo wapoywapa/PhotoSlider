@@ -52,6 +52,7 @@ public class ViewController: UIViewController {
     var photos: [PhotoSlider.Photo]?
     var usingImageType: PhotoSliderControllerUsingImageType = .None
     var bannerAdView: UIView?
+    var identifier: Int = -1
     var viewUpperPadding: UIView?
     
     
@@ -121,12 +122,14 @@ public class ViewController: UIViewController {
     public var imageLoader: PhotoSlider.ImageLoader?
 
     
-    public init(imageURLs:Array<URL>, bannerAdView: UIView) {
+    public init(imageURLs:Array<URL>, bannerAdView: UIView, identifier: Int) {
         super.init(nibName: nil, bundle: nil)
         self.imageURLs = imageURLs
         usingImageType = .URL
         
         self.bannerAdView = bannerAdView
+        
+        self.identifier = identifier
     }
     
     public init(imageURLs:Array<URL>) {
@@ -210,7 +213,7 @@ public class ViewController: UIViewController {
             
             if isPrivateRequest
             {
-                imageView = PhotoSlider.ImageView(frame: frame, isPrivatePhoto: true)
+                imageView = PhotoSlider.ImageView(frame: frame, isPrivatePhoto: true, identifier: self.identifier)
             }
             else
             {
