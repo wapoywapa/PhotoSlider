@@ -132,10 +132,12 @@ public class ViewController: UIViewController {
         self.identifier = identifier
     }
     
-    public init(imageURLs:Array<URL>) {
+    public init(imageURLs:Array<URL>, identifier: Int) {
         super.init(nibName: nil, bundle: nil)
         self.imageURLs = imageURLs
         usingImageType = .URL
+        
+        self.identifier = identifier
     }
     
     public init(images: [UIImage]) {
