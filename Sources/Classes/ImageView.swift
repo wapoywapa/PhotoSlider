@@ -108,7 +108,7 @@ class ImageView: UIView {
             self.requestButton!.setTitleColor(UIColor.white, for: .normal)
             self.requestButton!.setBackgroundColor(UIColor(red: 72.0 / 255.0, green: 96.0 / 255.0, blue: 1.0, alpha: 1.0), for: .normal)
             self.requestButton!.addTarget(self, action: #selector(requestButtonTapped), for: .touchUpInside)
-            
+
             scrollView.addSubview(privateRequestView)
             privateRequestView.addSubview(self.requestButton!)
             privateRequestView.addSubview(padlockImageView)
@@ -163,7 +163,7 @@ class ImageView: UIView {
         }
     }
     
-    func requestButtonTapped()
+    @objc func requestButtonTapped()
     {
         //we pass back an identifier, helps us track the notification sender/receiver
         let userInfo: [String: Int] = ["identifier": self.identifier]
@@ -272,7 +272,7 @@ class ImageView: UIView {
 
 extension ImageView {
     
-    func didDoubleTap(_ sender: UIGestureRecognizer) {
+    @objc func didDoubleTap(_ sender: UIGestureRecognizer) {
         if scrollView.zoomScale == 1.0 {
             let touchPoint = sender.location(in: self)
             scrollView.zoom(to: CGRect(x: touchPoint.x, y: touchPoint.y, width: 1, height: 1), animated: true)

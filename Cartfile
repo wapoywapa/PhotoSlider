@@ -1,2 +1,2 @@
 github "onevcat/Kingfisher"
-github "aloco/SimpleButton" ~> 3.0
+github "aloco/SimpleButton"

@@ -73,7 +73,7 @@ public class ViewController: UIViewController {
         let imagePath = self.resourceBundle().path(forResource: "PhotoSliderClose", ofType: "png")
         closeButton.setImage(UIImage(contentsOfFile: imagePath!), for: .normal)
         closeButton.addTarget(self, action: #selector(closeButtonDidTap(_:)), for: .touchUpInside)
-        closeButton.imageView?.contentMode = UIViewContentMode.center
+        closeButton.imageView?.contentMode = UIView.ContentMode.center
         closeButton.layer.shadowColor = UIColor.black.cgColor
         closeButton.layer.shadowOffset = CGSize(width: 1, height: 1)
         closeButton.layer.shadowRadius = 3
@@ -290,7 +290,7 @@ public class ViewController: UIViewController {
         
     }
     
-    func closeButtonDidTap(_ sender: UIButton) {
+    @objc func closeButtonDidTap(_ sender: UIButton) {
         delegate?.photoSliderControllerWillDismiss?(self)
         dissmissViewControllerAnimated(animated: true)
     }
@@ -410,8 +410,8 @@ extension ViewController: UIScrollViewDelegate {
         }
         
         
-        let offsetX = fabs(scrollView.contentOffset.x - scrollPreviewPoint.x)
-        let offsetY = fabs(scrollView.contentOffset.y - scrollPreviewPoint.y)
+        let offsetX = abs(scrollView.contentOffset.x - scrollPreviewPoint.x)
+        let offsetY = abs(scrollView.contentOffset.y - scrollPreviewPoint.y)
         
         if scrollMode == .None {
             if (offsetY > offsetX) {
@@ -422,8 +422,8 @@ extension ViewController: UIScrollViewDelegate {
         }
         
         if scrollMode == .Vertical {
-            let offsetHeight = fabs(scrollView.frame.size.height - scrollView.contentOffset.y)
-            let alpha = 1.0 - ( fabs(offsetHeight) / (scrollView.frame.size.height / 2.0) )
+            let offsetHeight = abs(scrollView.frame.size.height - scrollView.contentOffset.y)
+            let alpha = 1.0 - ( abs(offsetHeight) / (scrollView.frame.size.height / 2.0) )
             
             backgroundView.alpha = alpha
             
@@ -547,7 +547,7 @@ extension ViewController: PhotoSliderImageViewDelegate {
         if scale <= 1.0 {
             scrollView.isScrollEnabled = true
             
-            UIView.animate(withDuration: 0.05, delay: 0.0, options: UIViewAnimationOptions.curveLinear, animations: { () -> Void in
+            UIView.animate(withDuration: 0.05, delay: 0.0, options: UIView.AnimationOptions.curveLinear, animations: { () -> Void in
                 self.closeButton.alpha = 1.0
                 self.captionLabel.alpha = 1.0
                 if self.visiblePageControl {
@@ -558,7 +558,7 @@ extension ViewController: PhotoSliderImageViewDelegate {
         } else {
             scrollView.isScrollEnabled = false
             
-            UIView.animate(withDuration: 0.05, delay: 0.0, options: UIViewAnimationOptions.curveLinear, animations: { () -> Void in
+            UIView.animate(withDuration: 0.05, delay: 0.0, options: UIView.AnimationOptions.curveLinear, animations: { () -> Void in
                 self.closeButton.alpha = 0.0
                 self.captionLabel.alpha = 0.0
                 if self.visiblePageControl {
@@ -642,7 +642,7 @@ extension ViewController: ZoomingAnimationControllerTransitioning {
     public func transitionSourceImageView() -> UIImageView {
         let zoomingImageView = imageViews[currentPage]
         zoomingImageView.imageView.clipsToBounds = true
-        zoomingImageView.imageView.contentMode = UIViewContentMode.scaleAspectFill
+        zoomingImageView.imageView.contentMode = UIView.ContentMode.scaleAspectFill
         return zoomingImageView.imageView
     }
     
@@ -696,12 +696,12 @@ extension ViewController: ZoomingAnimationControllerTransitioning {
         if usingImageType == .Photo {
             if imageResources()!.count > 0 {
                 let photo = photos![currentPage] as Photo
-                UIView.animate(withDuration: 0.1, delay: 0.0, options: UIViewAnimationOptions.curveLinear, animations: { () -> Void in
+                UIView.animate(withDuration: 0.1, delay: 0.0, options: UIView.AnimationOptions.curveLinear, animations: { () -> Void in
                     self.captionLabel.alpha = 0.0
                 }, completion: { (completed) -> Void in
                     
                     self.captionLabel.text = photo.caption
-                    UIView.animate(withDuration: 0.1, delay: 0.0, options: UIViewAnimationOptions.curveLinear, animations: { () -> Void in
+                    UIView.animate(withDuration: 0.1, delay: 0.0, options: UIView.AnimationOptions.curveLinear, animations: { () -> Void in
                         self.captionLabel.alpha = 1.0
                     }, completion: nil)
                     

@@ -63,7 +63,7 @@ public class ProgressView: UIView {
         progressLayer.lineWidth = 4.0
         progressLayer.strokeStart = 0.0
         progressLayer.strokeEnd = 0.0
-        progressLayer.lineCap = kCALineCapRound
+        progressLayer.lineCap = CAShapeLayerLineCap.round
         layer.addSublayer(self.progressLayer)
     }
     
@@ -77,7 +77,7 @@ public class ProgressView: UIView {
         animation.fromValue = NSNumber(value: Float(progressLayer.strokeEnd))
         animation.toValue = NSNumber(value: progress)
         animation.duration = 0.05
-        animation.fillMode = kCAFillModeForwards
+        animation.fillMode = CAMediaTimingFillMode.forwards
         progressLayer.strokeEnd = CGFloat(progress)
         progressLayer.add(animation, forKey: "strokeEnd")
     }

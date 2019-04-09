@@ -61,7 +61,7 @@ public class ZoomingAnimationController: NSObject, UIViewControllerAnimatedTrans
         UIView.animate(
             withDuration: self.transitionDuration(using: transitionContext),
             delay: 0.0,
-            options: UIViewAnimationOptions.curveEaseOut,
+            options: UIView.AnimationOptions.curveEaseOut,
             animations: { () -> Void in
                 
                 containerView.alpha = 1.0
@@ -97,7 +97,7 @@ public class ZoomingAnimationController: NSObject, UIViewControllerAnimatedTrans
         UIView.animate(
             withDuration: self.transitionDuration(using: transitionContext),
             delay: 0.0,
-            options: UIViewAnimationOptions.curveLinear,
+            options: UIView.AnimationOptions.curveLinear,
             animations: { () -> Void in
                 
                 self.destinationTransition!.transitionDestinationImageView(sourceImageView: sourceImageView)
